@@ -792,3 +792,23 @@ extern void cl_fmap_close(cl_fmap_t *map)
 {
     funmap(map);
 }
+
+fmap_t *fmap_buff_check_empty(const void *buff, size_t len, int *empty) {
+    fmap_t *m;
+
+    *empty = 0;
+    if(!len) {
+	cli_dbgmsg("fmap: attempted void mapping\n");
+	*empty = 1;
+	return NULL;
+    }
+    m = cl_fmap_open_memory(buff, len);
+    if (!m)
+	return NULL;
+    return m;
+}
+
+fmap_t *fmap_buff(const void *buff, size_t len) {
+    int unused;
+    return fmap_buff_check_empty(buff, len, &unused);
+}

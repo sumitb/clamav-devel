@@ -3595,6 +3595,26 @@ int cl_scanfile_callback(const char *filename, const char **virname, unsigned lo
     return ret;
 }
 
+int cl_scanbuff(const void *buffer, size_t length, const char **virname, unsigned long int *scanned, const struct cl_engine *engine, unsigned int scanoptions)
+{
+    return cl_scanbuff_callback(buffer, length, virname, scanned, engine, scanoptions, NULL);
+}
+
+int cl_scanbuff_callback(const void *buffer, size_t length, const char **virname, unsigned long int *scanned, const struct cl_engine *engine, unsigned int scanoptions, void *context)
+{
+    cl_fmap_t *m;
+    int empty;
+
+    if(!buffer)
+        return CL_EARG;
+
+    m = fmap_buff(buffer, length);
+    if(!m)
+	return CL_EMEM;
+
+    return cl_scanmap_callback(m, virname, scanned, engine, scanoptions, context);
+}
+
 /*
 Local Variables:
    c-basic-offset: 4

@@ -182,4 +182,7 @@ int fmap_dump_to_file(fmap_t *map, const char *tmpdir, char **outname, int *outf
 /* deprecated */
 int fmap_fd(fmap_t *m);
 
+fmap_t *fmap_buff(const void *buff, size_t len);
+fmap_t *fmap_buff_check_empty(const void *buff, size_t len, int *empty);
+
 #endif

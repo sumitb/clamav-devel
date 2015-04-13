@@ -57,6 +57,8 @@ CLAMAV_PUBLIC {
     cl_finish_hash;
     cl_hash_destroy;
     cl_engine_stats_enable;
+    cl_scanbuff;
+    cl_scanbuff_callback;
 };
 CLAMAV_PRIVATE {
   global:

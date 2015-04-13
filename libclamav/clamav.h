@@ -762,6 +762,10 @@ int cl_finish_hash(void *ctx, void *buf);
 void cl_hash_destroy(void *ctx);
 /* End of crypto/hashing functions */
 
+/* buffer scanning */
+int cl_scanbuff(const void *buffer, size_t length, const char **virname, unsigned long int *scanned, const struct cl_engine *engine, unsigned int scanoptions);
+int cl_scanbuff_callback(const void *buffer, size_t length, const char **virname, unsigned long int *scanned, const struct cl_engine *engine, unsigned int scanoptions, void *context);
+
 #ifdef __cplusplus
 }
 #endif
